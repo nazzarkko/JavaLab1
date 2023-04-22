@@ -11,29 +11,28 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @ToString
 @Setter
-public class BussinesLaptop extends AbstractLaptop{
-    protected int capacityInHours;
-    protected String versionOfWindows;
-    protected  boolean licensionForMicrosoftOffice;
+public class BussinesLaptop extends AbstractLaptop {
+    private int capacityInHours;
+    private String versionOfWindows;
+    private boolean licensionForMicrosoftOffice;
 
-    public BussinesLaptop(String model, int ram, int screenSizeInch, int capacityInHours, String versionOfWindows, boolean licensionForMicrosoftOffice) {
+    public BussinesLaptop( String model, int ram, int screenSizeInch, int capacityInHours, String versionOfWindows,
+                           boolean licensionForMicrosoftOffice ) {
         super(model, ram, screenSizeInch);
         this.capacityInHours = capacityInHours;
         this.versionOfWindows = versionOfWindows;
-        this.licensionForMicrosoftOffice = licensionForMicrosoftOffice;
-    }
-    public String getHeaders(){
-        return super.getHeaders()+"capacityInHours, "+"versionOfWindows, "+"licensionForMicrosoftOffice";
-
-    }
-    public String toCSV(){
-        return super.toCSV()+" , "+capacityInHours+" , "+ versionOfWindows+" , "+ licensionForMicrosoftOffice;
-    }
-
-
+        this.licensionForMicrosoftOffice = licensionForMicrosoftOffice; }
     @Override
-    public String replaceBatttery(int capacityInHours) {
-        this.capacityInHours=capacityInHours;
-        return "Laptop with new battery can work " +capacityInHours;
+    public String getHeaders() {
+        return super.getHeaders() + "capacityInHours, " + "versionOfWindows, " + "licensionForMicrosoftOffice";
+    }
+    @Override
+    public String toCSV() {
+        return super.toCSV() + " , " + capacityInHours + " , " + versionOfWindows + " , " + licensionForMicrosoftOffice;
+    }
+    @Override
+    public String replaceBatttery( int capacityInHours ) {
+        this.capacityInHours = capacityInHours;
+        return "Laptop with new battery can work " + capacityInHours;
     }
 }
