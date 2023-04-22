@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.LinkedList;
 import java.util.stream.Collectors;
 
-public class AbstractLaptopManager extends LaptopWriter {
+public class AbstractLaptopManager {
     public static final List<AbstractLaptop> LAPTOPS = new LinkedList<>();
 
     public static final void addLaptop(AbstractLaptop laptop) {
@@ -22,7 +22,8 @@ public class AbstractLaptopManager extends LaptopWriter {
                 .filter(LAPTOP -> LAPTOP.getScreenSizeInch() > minimalScreenSize)
                 .collect(Collectors.toList());
     }
-    public static final void main(String[] args) {
+
+    public static void main(String[] args) {
         AbstractLaptopManager laptopManager = new AbstractLaptopManager();
         AbstractLaptopManager.addLaptop(new GamingLaptop("HP", 16, 16,
                 "Nvidia Geforce RTX 3060", 4, 5));
@@ -41,16 +42,20 @@ public class AbstractLaptopManager extends LaptopWriter {
         AbstractLaptopManager.addLaptop(new MacBook("MacBook PRO M1", 32, 15, 5,
                 "M1", "IOS 16"));
         for (AbstractLaptop laptop : laptopManager.LAPTOPS) {
-            System.out.println(laptop); }
+            System.out.println(laptop);
+        }
         var laptopWithMoreScreenSize = laptopManager.findLaptopWithmoreScreenSize(13);
         System.out.println("Laptop with more screen size ");
         for (AbstractLaptop laptop : laptopWithMoreScreenSize) {
-            System.out.println(laptop); }
+            System.out.println(laptop);
+        }
         var laptopsWithChoosedRam = laptopManager.chooseLaptopWithRam(32);
         System.out.println("Laptops with choosed RAM");
         for (AbstractLaptop laptop : laptopsWithChoosedRam) {
             System.out.println(laptop);
-    }
+        }
+        LaptopWriter laptopWriter = new LaptopWriter();
+        laptopWriter.writeToFile(laptopManager.LAPTOPS, "laptops");
     }
 
 }
